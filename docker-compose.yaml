@@ -1,0 +1,20 @@
+services:
+  pg:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ${BLOG_APP__DB__DATABASE}
+      POSTGRES_USER: ${BLOG_APP__DB__USERNAME}
+      POSTGRES_PASSWORD: ${BLOG_APP__DB__PASSWORD}
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${BLOG_APP__DB__USERNAME} -d ${BLOG_APP__DB__DATABASE}"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+
+volumes:
+  pg_data:
