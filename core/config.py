@@ -4,7 +4,7 @@ from pydantic import BaseModel, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from sqlalchemy import URL
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class DbConfig(BaseModel):
@@ -44,6 +44,7 @@ class DbConfig(BaseModel):
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_prefix="BLOG_APP__",
+        env_nested_delimiter="__",
         env_file=(
             BASE_DIR / ".env.default",
             BASE_DIR / ".env",
