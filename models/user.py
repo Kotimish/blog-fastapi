@@ -6,8 +6,8 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from models.base import Base
 from models.mixins import CreatedAtMixin, IdIntPkMixin
 
-# if TYPE_CHECKING:
-#     from models import Post
+if TYPE_CHECKING:
+    from models import Post
 
 
 class User(IdIntPkMixin, CreatedAtMixin, Base):
@@ -24,9 +24,9 @@ class User(IdIntPkMixin, CreatedAtMixin, Base):
         default='',
         server_default='',
     )
-    # posts: Mapped[list['Post']] = relationship(
-    #     back_populates='user'
-    # )
+    posts: Mapped[list['Post']] = relationship(
+        back_populates='user'
+    )
 
     def __str__(self):
         return f"{self.__class__.__name__}(id={self.id}, username={self.username!r}, email={self.email!r}, full_name={self.full_name!r})"

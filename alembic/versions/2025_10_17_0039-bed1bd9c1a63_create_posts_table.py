@@ -1,8 +1,8 @@
-"""create users table
+"""create posts table
 
-Revision ID: 2d3f9295282c
-Revises: 
-Create Date: 2025-10-17 00:23:19.227996
+Revision ID: bed1bd9c1a63
+Revises: 2d3f9295282c
+Create Date: 2025-10-17 00:39:27.818541
 
 """
 from typing import Sequence, Union
@@ -11,8 +11,8 @@ from alembic import op
 import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
-revision: str = '2d3f9295282c'
-down_revision: Union[str, Sequence[str], None] = None
+revision: str = 'bed1bd9c1a63'
+down_revision: Union[str, Sequence[str], None] = '2d3f9295282c'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -20,26 +20,26 @@ depends_on: Union[str, Sequence[str], None] = None
 def upgrade() -> None:
     """Upgrade schema."""
     op.create_table(
-        'users',
+        'posts',
         sa.Column(
             'id',
             sa.Integer(),
             nullable=False,
         ),
         sa.Column(
-            'username',
-            sa.String(length=32),
-            nullable=False,
-        ),
-        sa.Column(
-            'email',
-            sa.String(length=150),
-            nullable=False,
-        ),
-        sa.Column(
-            'full_name',
+            'title',
             sa.String(length=100),
+            nullable=False,
+        ),
+        sa.Column(
+            'body',
+            sa.Text(),
             server_default='',
+            nullable=False,
+        ),
+        sa.Column(
+            'user_id',
+            sa.Integer(),
             nullable=False,
         ),
         sa.Column(
@@ -48,21 +48,18 @@ def upgrade() -> None:
             server_default=sa.text('now()'),
             nullable=False,
         ),
+        sa.ForeignKeyConstraint(
+            ['user_id'],
+            ['users.id'],
+            name=op.f('fk_posts_user_id_users'),
+        ),
         sa.PrimaryKeyConstraint(
             'id',
-            name=op.f('pk_users'),
-        ),
-        sa.UniqueConstraint(
-            'email',
-            name=op.f('uq_users_email'),
-        ),
-        sa.UniqueConstraint(
-            'username',
-            name=op.f('uq_users_username'),
+            name=op.f('pk_posts'),
         ),
     )
 
 
 def downgrade() -> None:
     """Downgrade schema."""
-    op.drop_table('users')
+    op.drop_table('posts')
