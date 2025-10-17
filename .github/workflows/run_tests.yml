@@ -64,4 +64,4 @@ jobs:
         BLOG_APP__DB__HOST: localhost
         BLOG_APP__DB__USERNAME: user
         BLOG_APP__DB__PASSWORD: password_do_not_use_in_prod
-        SQLALCHEMY_PG_CONN_URI: postgresql+asyncpg://postgres:secretpassword@localhost:5432/postgres
+        SQLALCHEMY_PG_CONN_URI: postgresql+asyncpg://user:password_do_not_use_in_prod@localhost:5432/blog
