@@ -26,7 +26,7 @@ jobs:
           POSTGRES_PASSWORD: password_do_not_use_in_prod
         # Set health checks to wait until postgres has started
         healthcheck:
-          test: ["CMD-SHELL", "pg_isready -U ${BLOG_APP__DB__USERNAME} -d ${BLOG_APP__DB__DATABASE}"]
+          test: ["CMD-SHELL", "pg_isready -U user -d blog"]
           interval: 5s
           timeout: 2s
           retries: 3
@@ -61,7 +61,6 @@ jobs:
         poetry run pytest -s -vv -r sxfE
       env:
         BLOG_APP__DB__DATABASE: blog
-        BLOG_APP__DB__HOST: localhost
         BLOG_APP__DB__USERNAME: user
         BLOG_APP__DB__PASSWORD: password_do_not_use_in_prod
         SQLALCHEMY_PG_CONN_URI: postgresql+asyncpg://user:password_do_not_use_in_prod@localhost:5432/blog
