@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from pydantic import BaseModel, SecretStr
+from pydantic import BaseModel, SecretStr, AnyHttpUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from sqlalchemy import URL
 
@@ -41,6 +41,10 @@ class DbConfig(BaseModel):
         return self.build_url(self.driver_async)
 
 
+class ExternalApiConfig(BaseModel):
+    base_url: AnyHttpUrl
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_prefix="BLOG_APP__",
@@ -51,6 +55,7 @@ class Settings(BaseSettings):
         ),
     )
     db: DbConfig
+    jsonplaceholder: ExternalApiConfig
 
 
 settings = Settings()
