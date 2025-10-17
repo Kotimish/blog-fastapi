@@ -47,3 +47,11 @@
        ```bash
        alembic upgrade head
        ```
+   
+### Заполнение БД демо-данными (опционально)
+
+Для удобства разработки и тестирования можно загрузить демо-данные из [JSONPlaceholder](https://jsonplaceholder.typicode.com):
+
+```bash
+python -m scripts.seed_db
+```
