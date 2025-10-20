@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Посты{% endblock %}
+{% block content %}
+<div class="card-body p-0">
+    {% for post in posts %}
+    <div class="p-4 border-bottom">
+        <h4 class="mb-2">{{ post.title }}</h4>
+        {% if post.body %}
+        <p class="text-muted mb-2">{{post.body}}</p>
+        {% endif %}
+        <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+                <a href="/posts/{{ post.id }}" class="text-decoration-none">Подробнее</a>
+            </small>
+            <small class="text-muted">{{ post.created_at if post.created_at else '' }}</small>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

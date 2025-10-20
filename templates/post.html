@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <article class="card shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <h1 class="h2 mb-1">{{ post.title }}</h1>
+                    <small class="text-muted">
+                        Опубликовано
+                        <a href="/users/{{ post.user.id }}" class="text-decoration-none">
+                            {{ post.user.username }}
+                        </a>
+                        {{ post.created_at.strftime('%d.%m.%Y в %H:%M') }}
+                    </small>
+                </div>
+                <div class="card-body">
+                    {% if post.body %}
+                    <p class="mb-0">{{ post.body }}</p>
+                    {% else %}
+                    <p class="text-muted fst-italic">Тело поста отсутствует.</p>
+                    {% endif %}
+                </div>
+                <div class="card-footer text-end">
+                    <a href="/posts" class="btn btn-secondary">← Все посты</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}
