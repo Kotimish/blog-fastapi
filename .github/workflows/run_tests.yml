@@ -59,6 +59,7 @@ jobs:
 
     - name: Run database migrations
       run: |
+        cd app
         poetry run alembic upgrade head
       env:
         BLOG_APP__DB__DATABASE: blog
@@ -70,6 +71,7 @@ jobs:
 
     - name: Test with pytest
       run: |
+        cd app
         poetry run pytest -s -vv -r sxfE
       env:
         BLOG_APP__DB__DATABASE: blog
