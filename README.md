@@ -15,43 +15,22 @@
     ```bash
     cd blog-fastapi
     ```
-2. **Создаем виртуальное окружение**
-    ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate
-    ```
-    Примечание: Убедитесь, что ваша версия Python не ниже 3.12.
-    При необходимости указывайте явно версию Python при создании окружения.
-
-    К примеру (для Python3.12)
-    ```bash
-    python3.12 -m venv .venv
-    source .venv/bin/activate
-    ```
-3. **Устанавливаем необходимые пакеты с помощью poetry**
-    ```bash
-    poetry install
-    ```
-   Если poetry отсутствует, то установите его по следующей инструкции: [ссылка](https://python-poetry.org/docs/#installation)
-4. **Копируем файл окружения**
+2. **Копируем файл окружения**
    ```bash
    cp .env.default .env
    ```
     По необходимости измените параметры файла
-5. **Запуск локальной БД PostgresQL**
-   - **Запускаем Docker-Compose**
-       ```bash
-       docker compose up -d
-       ```
-   - **Инициализация таблиц**
-       ```bash
-       alembic upgrade head
-       ```
+
+3. **Запуск приложения через docker-compose**
+   ```bash
+   docker compose up
+   ```
    
 ### Заполнение БД демо-данными (опционально)
 
 Для удобства разработки и тестирования можно загрузить демо-данные из [JSONPlaceholder](https://jsonplaceholder.typicode.com):
-
+ 
 ```bash
 python -m scripts.seed_db
 ```
+Скрипт запускается в контейнере
