@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+{% block content %}
+<div class="container d-flex flex-column align-items-center justify-content-center vh-100">
+    <h1 class="mb-4">Добро пожаловать!</h1>
+    <div class="d-grid gap-2" style="width: 100%; max-width: 300px;">
+        <a href="/posts" class="btn btn-primary">Список постов</a>
+        <a href="/users" class="btn btn-secondary">Список пользователей</a>
+    </div>
+</div>
+{% endblock %}

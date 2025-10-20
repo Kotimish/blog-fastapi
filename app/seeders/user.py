@@ -15,6 +15,7 @@ def map_jsonplaceholder_user(user_data: dict) -> dict:
 
 
 # --- Сидер: работа с БД ---
+# TODO Важно сделать синхронизацию при ручнос заполнении id
 class RawUserRepository:
     """Класс репозиторий для работы с сырыми данными пользователей без схем"""
 

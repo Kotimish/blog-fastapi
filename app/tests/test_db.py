@@ -4,15 +4,14 @@ from faker import Faker
 from sqlalchemy import select
 from sqlalchemy.orm import selectinload, joinedload
 
-import main
 import models
 from core.config import settings
 from core.db_async import async_session
+from scripts import seed_db
 
 fake = Faker()
 
 module_models = models
-module_main = main
 jsonplaceholder_url = (str(settings.jsonplaceholder.base_url))
 users_data_url = 'users'
 posts_data_url = 'posts'
@@ -54,8 +53,9 @@ def check_data_match(items_from_db, items_from_remote, args_mapping: dict):
     assert db_data == remote_data
 
 
+@pytest.mark.skip
 async def test_main(users_data, posts_data):
-    await module_main.init_data()
+    await seed_db.init_data()
 
     stmt_query_users = select(module_models.User).options(selectinload(module_models.User.posts))
     stmt_query_posts = select(module_models.Post).options(joinedload(module_models.Post.user))

@@ -15,6 +15,7 @@ def map_jsonplaceholder_post(post_data: dict) -> dict:
 
 
 # --- Сидер: работа с БД ---
+# TODO Важно сделать синхронизацию при ручнос заполнении id
 class RawPostRepository:
     """Класс репозиторий для работы с сырыми данными постов без схем"""
 
