@@ -16,6 +16,7 @@ dependencies = [
     "fastapi[standard] (>=0.119.0,<0.120.0)",
     "pydantic-settings (>=2.11.0,<3.0.0)",
     "requests (>=2.32.5,<3.0.0)",
+    "gunicorn (>=23.0.0,<24.0.0)",
 ]
 
 [build-system]

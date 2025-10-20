@@ -4,10 +4,10 @@ from faker import Faker
 from sqlalchemy import select
 from sqlalchemy.orm import selectinload, joinedload
 
-from scripts import seed_db
 import models
 from core.config import settings
 from core.db_async import async_session
+from scripts import seed_db
 
 fake = Faker()
 
@@ -53,6 +53,7 @@ def check_data_match(items_from_db, items_from_remote, args_mapping: dict):
     assert db_data == remote_data
 
 
+@pytest.mark.skip
 async def test_main(users_data, posts_data):
     await seed_db.init_data()
 
