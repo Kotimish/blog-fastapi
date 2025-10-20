@@ -1,10 +1,15 @@
-import asyncio
+import uvicorn
+from fastapi import FastAPI
+from routers.api import router as api_router
+from routers.web import router as web_router
 
-from scripts.seed_db import init_data
+app = FastAPI()
+app.include_router(api_router)
+app.include_router(web_router)
 
 
 def main():
-    asyncio.run(init_data())
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
 
 
 if __name__ == "__main__":
